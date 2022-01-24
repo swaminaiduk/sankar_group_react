@@ -9,7 +9,7 @@ import { Mail, Star, Check, Trash, Plus } from 'react-feather'
 
 const TodoSidebar = props => {
   // ** Props
-  const { handleTaskSidebar, setMainSidebar, mainSidebar, dispatch, getTasks, params } = props
+  const { handleTaskSidebar, setMainSidebar, mainSidebar, dispatch, getTasks, params, user } = props
 
   // ** Functions To Handle List Item Filter
   const handleFilter = filter => {
@@ -45,9 +45,7 @@ const TodoSidebar = props => {
         <div className='sidebar-content todo-sidebar'>
           <div className='todo-app-menu'>
             <div className='add-task'>
-              <Button.Ripple color='primary' onClick={handleAddClick} block>
-                Add Task
-              </Button.Ripple>
+              { (user.role === 'admin') ? <Button.Ripple color='primary' onClick={handleAddClick} block> Add Task </Button.Ripple> : ''}
             </div>
             <PerfectScrollbar className='sidebar-menu-list' options={{ wheelPropagation: false }}>
               <ListGroup tag='div' className='list-group-filters'>

@@ -1,10 +1,9 @@
 import axios from 'axios'
 import config from '../../../../../configs/themeConfig'
-const APIURL = 'http://localhost:5007/api/v1/admin/brand/'
 
 export const getAllData = () => {
   return async dispatch => {
-    await axios.get(APIURL).then(response => {
+    await axios.get(`${config.app.ApiUrl}/brand`).then(response => {
       dispatch({
         type: 'GET_ALL_BRAND_DATA',
         data: response.data.data
@@ -16,7 +15,7 @@ export const getAllData = () => {
 export const create = (data) => {
   return async dispatch => {
     await axios
-      .post(`${APIURL}`, data)
+      .post(`${config.app.ApiUrl}/brand`, data)
       .then(response => {
         dispatch({
           type: 'CREATE_BRAND',

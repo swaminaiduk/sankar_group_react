@@ -1,4 +1,4 @@
-import { Sliders, MessageSquare, Image, Shuffle,   Users } from 'react-feather'
+import { Sliders, MessageSquare, Image,   Users } from 'react-feather'
 
 export default [ 
   {
@@ -11,16 +11,16 @@ export default [
     id: 'chat',
     title: 'Chat',
     icon: <MessageSquare size={20} />,
-    // icon: <Shuffle size={20} />,
     navLink: '/apps/chat'
   },  
   {
     id: 'tasks',
     title: 'Tasks',
     icon: <Sliders size={12} />,
-    navLink: '/apps/todo'
+    navLink: '/apps/todo',
+    action: 'read',
+    resource: 'ACL'
   },
-
   {
     id: 'email',
     title: 'Files & Media',

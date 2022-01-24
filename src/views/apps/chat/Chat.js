@@ -98,17 +98,7 @@ const ChatLog = props => {
         </div>
       )
     })
-  }
-
-  const handleAvatarClick = obj => {
-    handleUserSidebarRight()
-    handleUser(obj)
-  }
-  const handleStartConversation = () => {
-    if (!Object.keys(selectedUser).length && !userSidebarLeft && window.innerWidth <= 1200) {
-      handleSidebar()
-    }
-  }
+  } 
 
   // ** Sends New Msg
   const [selectedFile, setSelectedFile] = useState()

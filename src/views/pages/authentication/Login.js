@@ -23,7 +23,7 @@ import {
   CustomInput,
   Button
 } from 'reactstrap'
-
+import config from '../../../configs/themeConfig'
 
 import '@styles/base/pages/page-auth.scss'
 const ToastContent = ({ name, role }) => (
@@ -55,7 +55,7 @@ const Login = props => {
     if (errors && !errors.length) {
       if (errors && !errors.length) {
         axios
-        .post("http://localhost:5007/api/v1/admin/staff/login", { email, password })
+        .post(`${config.app.ApiUrl}/staff/login`, { email, password })
         .then((response) => {
           let loggedInUser
           if (response.data.data[0]) {

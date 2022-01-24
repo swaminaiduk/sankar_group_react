@@ -1,7 +1,6 @@
 import axios from 'axios'
 import config from '../../../../../configs/themeConfig'
 
-const ApiUrl = 'http://localhost:5007/api/v1/admin'
 export const getUserProfile = () => {
   return dispatch => {
     return axios.get('/apps/chat/users/profile-user').then(res => {
@@ -13,9 +12,10 @@ export const getUserProfile = () => {
     })
   }
 }
-export const getGroups = () => {
+export const getGroups = (emp_id) => {
+  console.log(emp_id)
   return dispatch => {
-    axios.get(`${ApiUrl}/group`).then(res => {
+    axios.get(`${config.app.ApiUrl}/group/${emp_id}`).then(res => {
       dispatch({
         type: 'GET_GROUPS',
         getGroups: res.data.data
@@ -26,7 +26,7 @@ export const getGroups = () => {
 export const getBrandOptions = id => {
   return async dispatch => {
     await axios
-      .get(`${ApiUrl}/brand/names`)
+      .get(`${config.app.ApiUrl}/brand/names`)
       .then(response => {
         dispatch({
           type: 'BRAND_OPTIONS',
@@ -38,7 +38,7 @@ export const getBrandOptions = id => {
 } 
 export const selectChat = id => {
   return dispatch => {
-    axios.get(`${ApiUrl}/chat/${id}`, id).then(res => {
+    axios.get(`${config.app.ApiUrl}/chat/${id}`, id).then(res => {
       dispatch({ type: 'SELECTED_GROUP', data: id })
       dispatch({ type: 'SELECT_CHAT', data: res.data.data[0] })
     })

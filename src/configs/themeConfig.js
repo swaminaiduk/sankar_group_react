@@ -4,8 +4,10 @@
 const themeConfig = {
     app: {
         appName: 'S Groups',
-        serverApi: 'http://localhost:5007',
-        ApiUrl: 'http://localhost:5007/api/v1/admin',
+        // serverApi: 'http://localhost:5030',
+        serverApi: 'https://api.sankar.group:5030',
+        ApiUrl: 'https://api.sankar.group:5030/api/v1/admin',
+        // ApiUrl: 'http://localhost:5030/api/v1/admin',
         appLogoImage: require('@src/assets/images/logo/dplogo.png').default
     },
     layout: {

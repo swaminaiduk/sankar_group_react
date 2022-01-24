@@ -30,8 +30,9 @@ const AppChat = () => {
     setUserSidebarLeft(false)
   }
   const handleUser = obj => setUser(obj)
+  const userData = JSON.parse(localStorage.getItem('userData'))[0]
   useEffect(() => {
-    dispatch(getGroups())
+    dispatch(getGroups(userData.id))
     dispatch(getCompanyList())
     dispatch(getBrandOptions())
   }, [dispatch]) 
@@ -44,6 +45,7 @@ const AppChat = () => {
         userSidebarLeft={userSidebarLeft}
         handleTaskSidebar={handleTaskSidebar}
         setMainSidebar={handleUserSidebarLeft}
+        userData={userData}
       />
       <div className='content-right'>
         <div className='content-wrapper'>

@@ -27,13 +27,14 @@ const TODO = () => {
 
   const dispatch = useDispatch()
   const store = useSelector(state => state.todo)
-
+  const user = JSON.parse(localStorage.getItem('userData'))[0]
   const paramsURL = useParams()
   const params = {
     filter: paramsURL.filter || '',
     q: query || '',
     sortBy: sort || '',
-    tag: paramsURL.tag || ''
+    tag: paramsURL.tag || '',
+    emp_id:user.id
   }
   // ** Function to handle Left sidebar & Task sidebar
   const handleMainSidebar = () => setMainSidebar(!mainSidebar)
@@ -48,7 +49,8 @@ const TODO = () => {
         filter: paramsURL.filter || '',
         q: query || '',
         sortBy: sort || '',
-        tag: paramsURL.tag || ''
+        tag: paramsURL.tag || '',
+        emp_id: user.id
       })
     )
   }, [store.tasks.length, paramsURL.filter, paramsURL.tag, query, sort])
@@ -65,6 +67,7 @@ const TODO = () => {
         handleTaskSidebar={handleTaskSidebar}
         handleCommentSidebar={handleCommentSidebar}
         getComment={getComment}
+        user={user}
       />
       <div className='content-right'>
         <div className='content-wrapper'>

@@ -2,13 +2,14 @@ import axios from "axios"
 import { history } from "../../../history"
 import { getHomeRouteForLoggedInUser } from '@utils'
 import { toast, Slide } from 'react-toastify'
+import config from '../../../configs/themeConfig'
 export const changeRole = (role) => {
   return (dispatch) => dispatch({ type: "CHANGE_ROLE", userRole: role })
 }
 export const loginWithJWT = (email, password) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:5007/api/v1/admin/staff/login", { email, password })
+      .post(`${config.app.ApiUrl}/staff/login`, { email, password })
       .then((response) => {
         let loggedInUser
         if (response.data.data[0]) {

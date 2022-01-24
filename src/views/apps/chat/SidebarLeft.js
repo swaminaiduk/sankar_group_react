@@ -11,7 +11,7 @@ import {
   InputGroup 
 } from 'reactstrap'
 const SidebarLeft = props => {
-  const { setMainSidebar, store, sidebar, handleSidebar, userSidebarLeft, handleUserSidebarLeft, handleTaskSidebar } = props
+  const { setMainSidebar, store, sidebar, handleSidebar, userSidebarLeft, handleUserSidebarLeft, handleTaskSidebar, userData } = props
   const {userProfile, getGroups } = store
   const dispatch = useDispatch()
   const [active, setActive] = useState({})
@@ -73,7 +73,7 @@ const SidebarLeft = props => {
                 ) : null}
               </div>
               <InputGroup className='input-group-merge ml-1 w-100'>
-                <PlusCircle   onClick={handleTaskSidebar}/>
+                {(userData.role === 'admin') ? <PlusCircle   onClick={handleTaskSidebar}/> : ''}
               </InputGroup>
             </div>
           </div>
