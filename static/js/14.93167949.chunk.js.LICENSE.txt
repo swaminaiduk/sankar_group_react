@@ -1,0 +1,1 @@
+//!isObjEmpty(store.selectedTask) && assignee.label === store.selectedTask.assignee.fullName
