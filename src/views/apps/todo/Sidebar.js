@@ -9,7 +9,7 @@ import { Mail, Star, Check, Trash, Plus } from 'react-feather'
 
 const TodoSidebar = props => {
   // ** Props
-  const { handleTaskSidebar, setMainSidebar, mainSidebar, dispatch, getTasks, params, user } = props
+  const { handleTaskSidebar, mainSidebar, dispatch, getTasks, params, user } = props
 
   // ** Functions To Handle List Item Filter
   const handleFilter = filter => {
@@ -33,7 +33,6 @@ const TodoSidebar = props => {
   // ** Functions To Handle Add Task Click
   const handleAddClick = () => {
     handleTaskSidebar()
-    setMainSidebar()
   }
   return (
     <div

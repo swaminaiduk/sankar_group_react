@@ -6,7 +6,9 @@ const initialState = {
   getGroups: [],
   companyList: {},
   brandOptions: [],
-  companyBrandStaff: []
+  companyBrandStaff: [],
+  groupStaff: []      
+
 }
 
 const chatReducer = (state = initialState, action) => {
@@ -25,8 +27,10 @@ const chatReducer = (state = initialState, action) => {
       return { ...state, companyList: action.companyList }
     case 'BRAND_OPTIONS':
       return { ...state, brandOptions: action.brandOptions }
-    case 'COMPANY_STAFF': 
+      case 'COMPANY_STAFF': 
       return { ...state, companyBrandStaff: action.companyBrandStaff }
+    case 'GROUP_STAFF': 
+      return { ...state, groupStaff: action.groupStaff }
     case 'SEND_MSG':
       // ** Add new msg to chat
       const newMsg = action.data.response.chat

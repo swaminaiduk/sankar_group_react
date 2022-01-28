@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import { ChevronDown, Trash2  } from 'react-feather'
 import DataTable from 'react-data-table-component'
-import { Card, CardHeader, CardTitle, CardBody, Input, Row, Col, Label, CustomInput, Button } from 'reactstrap'
+import { Card, Input, Row, Col, Label, CustomInput, Button } from 'reactstrap'
 
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
@@ -91,19 +91,8 @@ const UsersList = () => {
     { value: '', label: 'Select Role' },
     { value: 'admin', label: 'Admin' },
     { value: 'author', label: 'Author' },
-    { value: 'editor', label: 'Editor' },
-    { value: 'maintainer', label: 'Maintainer' },
-    { value: 'subscriber', label: 'Subscriber' }
-  ]
-
-  const planOptions = [
-    { value: '', label: 'Select Plan' },
-    { value: 'basic', label: 'Basic' },
-    { value: 'company', label: 'Company' },
-    { value: 'enterprise', label: 'Enterprise' },
-    { value: 'team', label: 'Team' }
-  ]
-
+    { value: 'editor', label: 'Editor' }
+  ] 
   const statusOptions = [
     { value: '', label: 'Select Status', number: 0 },
     { value: 'pending', label: 'Pending', number: 1 },

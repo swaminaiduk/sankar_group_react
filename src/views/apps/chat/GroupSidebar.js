@@ -2,13 +2,13 @@ import { Modal, Form, ModalBody, Button,  FormGroup, Input, Label, Media } from 
 import Select, { components } from 'react-select'
 import { useState } from 'react'
 import { X, Star } from 'react-feather'
-import { isObjEmpty, selectThemeColors } from '@utils'
+import { selectThemeColors } from '@utils'
 import { getCompanyBrandEmployees, create } from './store/actions'
 const GroupSidebar = props => {
-  const { companyBrandStaff, open, handleTaskSidebar,  store, dispatch, companyList, brandOptions} = props
+  const { companyBrandStaff, open, handleTaskSidebar,  store, dispatch, companyList, brandOptions, userData} = props
   const [currentCompany, setCurrentCompany] =   useState({ value: '', label: 'Select Company' })
   const [currentBrand, setCurrentBrand] =   useState({ value: '', label: 'Select Brand' })
-  const [assignee, setAssignee] = useState({ value: '', label: '' })
+  const [assignee, setAssignee] = useState({ value: '', label: 'Select...' })
   const onSubmit = (event, errors) => {
     event.preventDefault()
     handleTaskSidebar()
@@ -17,6 +17,8 @@ const GroupSidebar = props => {
     data.brand =  currentBrand.value
     data.group = event.target.group.value
     data.assignee = assignee
+    data.emp_id = userData?.id
+    console.log(assignee)
     dispatch(create(data))
   }
 
@@ -32,17 +34,19 @@ const GroupSidebar = props => {
     )
   }
 
-  const getEmployeeData = (brand) => {
-    dispatch(getCompanyBrandEmployees({company:currentCompany.value, brand:currentBrand.value}))
+  const getEmployeeData = (type, data) => {
+    if (type === 'c') {
+      setCurrentCompany(data)
+    }
+    if (type === 'b') {
+      setCurrentBrand(data)
+    }
+      dispatch(getCompanyBrandEmployees({company:currentCompany.value, brand:currentBrand.value}))
   }
   const ModalHeader = props => {
     const {
       children,
-      store,
-      handleTaskSidebar,
-      important,
-      setImportant,
-      dispatch    
+      handleTaskSidebar
     } = props
     return (
       <div className='modal-header d-flex align-items-center justify-content-between mb-1'>
@@ -82,8 +86,7 @@ const GroupSidebar = props => {
                 options={companyList}
                 value={currentCompany}
                 onChange={data => {
-                  setCurrentCompany(data)
-                  getEmployeeData(data)
+                  getEmployeeData('c', data)
                 }}
               />
           </FormGroup>
@@ -97,8 +100,7 @@ const GroupSidebar = props => {
                 options={brandOptions}
                 value={currentBrand}
                 onChange={data => {
-                  setCurrentBrand(data)
-                  getEmployeeData(data)
+                  getEmployeeData('b', data)
                 }}
               />
           </FormGroup>

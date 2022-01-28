@@ -10,7 +10,8 @@ import { sendMsg, sendFile } from './store/actions'
 // ** Third Party Components
 import classnames from 'classnames'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import {  Menu, Mic, Image, Send, File } from 'react-feather'
+import {  User, Mic, Image, Send, File } from 'react-feather'
+import UserProfileSidebar from './UserProfileSidebar'
 import {
   CardLink,
   Form,
@@ -22,16 +23,20 @@ import {
   Button
 } from 'reactstrap'
 const ChatLog = props => {
-  const { handleUser, handleUserSidebarRight, handleSidebar, store, userSidebarLeft } = props
-  const { selectedUser, selectedGroup } = store
+  const { store,  getGroupStaff, removeGroupStaff } = props
+  const { selectedUser, selectedGroup  } = store 
   const chatArea = useRef(null)
   const dispatch = useDispatch()
   const [msg, setMsg] = useState('')
+  const [profile, setProfile] = useState(false)
   const scrollToBottom = () => {
     const chatContainer = ReactDOM.findDOMNode(chatArea.current)
     chatContainer.scrollTop = Number.MAX_SAFE_INTEGER
   }
+  const handleProfile = () => setProfile(!profile)
+
   useEffect(() => {
+    dispatch(getGroupStaff(selectedGroup?.id))
     const selectedUserLen = Object.keys(selectedUser).length
     if (selectedUserLen) {
       scrollToBottom()
@@ -75,6 +80,7 @@ const ChatLog = props => {
     })
     return formattedChatLog
   }
+
   const renderChats = () => {
     return formattedChatData().map((item, index) => {
       const user = JSON.parse(localStorage.getItem('userData'))[0]
@@ -106,7 +112,7 @@ const ChatLog = props => {
     e.preventDefault()
     const userData = JSON.parse(localStorage.getItem('userData'))[0]
     if (msg.length) {
-      dispatch(sendMsg({ senderId:  userData.id, sender_name: userData.name, group_id: selectedGroup, message: msg }))
+      dispatch(sendMsg({ senderId:  userData.id, sender_name: userData.name, group_id: selectedGroup.id, message: msg }, selectedGroup))
       setMsg('')
     }
   } 
@@ -118,7 +124,7 @@ const ChatLog = props => {
     formData.append('image', event.target.files[0])
     formData.append('senderId', userData.id)
     formData.append('sender_name', userData.name)
-    formData.append('group_id', selectedGroup)
+    formData.append('group_id', selectedGroup.id)
     formData.append('msg', msg)
     dispatch(sendFile(formData, selectedGroup))
   }
@@ -129,14 +135,12 @@ const ChatLog = props => {
           <div className='chat-navbar'>
             <header className='chat-header'>
               <div className='d-flex align-items-center'>
-                <div className='sidebar-toggle d-block d-lg-none mr-1' onClick={handleSidebar}>
-                  <Menu size={21} />
-                  <h1>Test</h1>
+                <div className='sidebar-toggle d-block mr-1' >
+                  <User size={21} onClick={handleProfile} /> {selectedGroup?.group}
                 </div>
               </div>
             </header>
           </div>
-
           <ChatWrapper ref={chatArea} className='user-chats' options={{ wheelPropagation: false }}>
             {selectedUser.chat ? <div className='chats'>{renderChats()}</div> : null}
           </ChatWrapper>
@@ -166,6 +170,14 @@ const ChatLog = props => {
               <span className='d-none d-lg-block'>Send</span>
             </Button>
           </Form>
+          <UserProfileSidebar
+          isOpen={profile}
+          handleProfile={handleProfile}
+          groupStaff={store?.groupStaff}
+          selectedGroup={selectedGroup}
+          dispatch={dispatch}
+          store={store}
+          />
         </div>
     </div>
   )

@@ -8,6 +8,7 @@ import layout from './layout'
 import brand from '@src/views/apps/brand/store/reducer'
 import dashboard from '@src/views/dashboard/store/reducer'
 import company from '@src/views/apps/company/store/reducer'
+import media from '@src/views/files/store/reducer'
 
 import chat from '@src/views/apps/chat/store/reducer'
 import todo from '@src/views/apps/todo/store/reducer'
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   company,
   todo,
   chat,
+  media,
   email,
   users,
   navbar,

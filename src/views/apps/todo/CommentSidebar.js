@@ -1,6 +1,6 @@
 import   moment  from 'moment'
 import { useState, Fragment } from 'react'
-import { Modal, ModalBody, Button, Form, FormGroup, Input, Label, Media } from 'reactstrap'
+import { Modal, ModalBody, Button, Form, FormGroup} from 'reactstrap'
 import { X, Star, Trash } from 'react-feather'
 import classnames from 'classnames'
 import { Editor } from '@tinymce/tinymce-react'
@@ -11,9 +11,8 @@ const CommentSidebar = props => {
     const { open, handleCommentSidebar, selectedTask, store, dispatch, commentList, giveTaskComment, updateTask} = props
     const [desc, setDesc] = useState('<p></p>')
     const [skin, setSkin] = useSkin()
-    const [completed, setCompleted] = useState(selectedTask?.isCompleted)
-
-const renderFooterButtons = () => {
+    const [completed, setCompleted] = useState(store?.selectedTask?.isCompleted)
+    const renderFooterButtons = () => {
     const user = JSON.parse(localStorage.getItem('userData'))[0]
     const [important, setImportant] = useState(false)
 
@@ -57,8 +56,9 @@ const renderFooterButtons = () => {
     }
   }
   const changeStatus = (selectedTask) => {
-    setCompleted(!completed)
-    dispatch(updateTask({task_id:selectedTask.id, isCompleted: completed}))
+    setCompleted(!store?.selectedTask?.isCompleted)
+    dispatch(updateTask({task_id:selectedTask.id, isCompleted: store?.selectedTask?.isCompleted}))
+    handleCommentSidebar()
   }
     return (
         <Modal
@@ -76,9 +76,9 @@ const renderFooterButtons = () => {
                     size='sm'
                     // onClick={() => setCompleted(!completed)}
                     onClick={() => changeStatus(selectedTask)}
-                    color={completed === true ? 'success' : 'secondary'}
+                    color={store?.selectedTask?.isCompleted === true ? 'success' : 'secondary'}
                     >
-                    {completed === true ? 'Completed' : 'Mark Complete'}
+                    {store?.selectedTask?.isCompleted === true ? 'Completed' : 'Mark Complete'}
                     </Button.Ripple>
                     </span>
                     <X className='font-weight-normal mt-25' size={16} onClick={handleCommentSidebar}/>

@@ -6,7 +6,7 @@ import BrandRoutes from './Brand'
 import ChartMapsRoutes from './ChartsMaps'
 import DashboardRoutes from './Dashboards'
 import UiElementRoutes from './UiElements'
-import ExtensionsRoutes from './Extensions'
+import MediaRoutes from './Media'
 import PageLayoutsRoutes from './PageLayouts'
 
 // ** Document title
@@ -20,8 +20,8 @@ const Routes = [
   ...DashboardRoutes,
   ...AppRoutes,
   ...PagesRoutes,
+  ...MediaRoutes,
   ...UiElementRoutes,
-  ...ExtensionsRoutes,
   ...PageLayoutsRoutes,
   ...FormRoutes,
   ...BrandRoutes,

@@ -11,16 +11,14 @@ import {
   InputGroup 
 } from 'reactstrap'
 const SidebarLeft = props => {
-  const { setMainSidebar, store, sidebar, handleSidebar, userSidebarLeft, handleUserSidebarLeft, handleTaskSidebar, userData } = props
-  const {userProfile, getGroups } = store
+  const { handleGroup, store, sidebar,   userSidebarLeft, handleUserSidebarLeft, handleTaskSidebar} = props
+  const {userProfile, getGroups, selectedGroup } = store
   const dispatch = useDispatch()
   const [active, setActive] = useState({})
-  const handleUserClick = (type, id) => {
-    dispatch(selectChat(id))
+  const handleUserClick = (type, item) => {
+    const id = item.id
+    dispatch(selectChat(item))
     setActive({ type, id })
-    if (sidebar === true) {
-      handleSidebar()
-    }
   }
   const renderChats = () => {
     return getGroups.map(item => {
@@ -30,17 +28,14 @@ const SidebarLeft = props => {
             active: active.type === 'chat' && active.id === item.id
           })}
           key={item.id}
-          onClick={() => handleUserClick('chat', item.id)}
+          onClick={() => handleUserClick('chat', item)}
         >
-          <div className='chat-info flex-grow-1'>
+          <div className='chat-info flex-grow-1' >
             <h5 className='mb-0'>{item.group} </h5>
           </div>
         </li>
       )
     })
-  }
-  const handleAddClick = () => {
-    setMainSidebar()
   }
   return store ? (
     <div className='sidebar-left'>
@@ -56,7 +51,7 @@ const SidebarLeft = props => {
             show: sidebar === true
           })}
         >
-          <div className='sidebar-close-icon' onClick={handleSidebar}>
+          <div className='sidebar-close-icon'  >
             <X size={14} />
           </div>
           <div className='chat-fixed-search'>
@@ -73,7 +68,7 @@ const SidebarLeft = props => {
                 ) : null}
               </div>
               <InputGroup className='input-group-merge ml-1 w-100'>
-                {(userData.role === 'admin') ? <PlusCircle   onClick={handleTaskSidebar}/> : ''}
+                 <PlusCircle   onClick={handleTaskSidebar}/>
               </InputGroup>
             </div>
           </div>

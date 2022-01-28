@@ -1,19 +1,7 @@
 import axios from 'axios'
 import config from '../../../../../configs/themeConfig'
 
-export const getUserProfile = () => {
-  return dispatch => {
-    return axios.get('/apps/chat/users/profile-user').then(res => {
-      console.log(res.data)
-      return dispatch({
-        // type: 'GET_GROUPS',
-        // getGroups: res.data
-      })
-    })
-  }
-}
 export const getGroups = (emp_id) => {
-  console.log(emp_id)
   return dispatch => {
     axios.get(`${config.app.ApiUrl}/group/${emp_id}`).then(res => {
       dispatch({
@@ -36,27 +24,25 @@ export const getBrandOptions = id => {
       .catch(err => console.log(err))
   }
 } 
-export const selectChat = id => {
+export const selectChat = item => {
   return dispatch => {
-    axios.get(`${config.app.ApiUrl}/chat/${id}`, id).then(res => {
-      dispatch({ type: 'SELECTED_GROUP', data: id })
+    axios.get(`${config.app.ApiUrl}/chat/${item.id}`, item.id).then(res => {
+      dispatch({ type: 'SELECTED_GROUP', data: item })
       dispatch({ type: 'SELECT_CHAT', data: res.data.data[0] })
     })
   }
 } 
  
-export const sendMsg = (obj) => {
+export const sendMsg = (obj, selectedGroup) => {
   return dispatch => {
     axios.post(`${config.app.ApiUrl}/chat`, obj).then(res => {
-      // dispatch({ type: 'SEND_MSG', data: res.data })
-      dispatch(selectChat(obj.group_id))
+      dispatch(selectChat(selectedGroup))
     })
   }
 } 
 export const sendFile = (File, selectedGroup) => {
   return dispatch => {
     axios.post(`${config.app.ApiUrl}/upload/image/`, File).then(res => {
-      // dispatch({ type: 'SEND_MSG', data: res.data })
       dispatch(selectChat(selectedGroup))
     })
   }
@@ -88,7 +74,7 @@ export const create = (data) => {
           type: 'NEW_GROUP',
           newStaff: response.data
         })
-        dispatch(getGroups())
+        dispatch(getGroups(data.emp_id))
       })
       .catch(err => console.log(err))
   }
@@ -103,6 +89,49 @@ export const getCompanyBrandEmployees = (data) => {
           type: 'COMPANY_STAFF',
           companyBrandStaff: response.data.data
         })
+      })
+      .catch(err => console.log(err))
+  }
+}
+export const getGroupStaff = (groupId) => {
+  return async dispatch => {
+    await axios
+      .get(`${config.app.ApiUrl}/group/groupEmployees/${groupId}`)
+      .then(response => {
+        dispatch({
+          type: 'GROUP_STAFF',
+          groupStaff: response.data.data
+        })
+      })
+      .catch(err => console.log(err))
+  }
+} 
+
+export const removeGroupStaff = (selectedGroup, staffId) => {
+  return async dispatch => {
+    await axios
+      .delete(`${config.app.ApiUrl}/group/${selectedGroup.id}/${staffId}`)
+      .then(response => {
+        dispatch({
+          type: 'GROUP_STAFF_DELETE',
+          groupStaff: response.data.data
+        })
+        dispatch(selectChat(selectedGroup))
+      })
+      .catch(err => console.log(err))
+  }
+}
+
+export const addStaffGroup = (data) => {
+  return async dispatch => {
+    await axios
+      .post(`${config.app.ApiUrl}/group/addStaff`, data)
+      .then(response => {
+        dispatch({
+          type: 'GROUP_STAFF_DELETE',
+          groupStaff: response.data.data
+        })
+        dispatch(selectChat(data.selectedGroup))
       })
       .catch(err => console.log(err))
   }

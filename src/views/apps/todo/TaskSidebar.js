@@ -231,6 +231,12 @@ const ModalHeader = props => {
       </components.Option>
     )
   }
+  const selectedGroupEmp = []
+  store?.task_group_employees?.map((emp) => {
+    if (emp.assigned) {
+      selectedGroupEmp.push(emp)
+    }
+  }) 
   return (
     <Modal
       isOpen={open}
@@ -293,7 +299,7 @@ const ModalHeader = props => {
               className='react-select'
               classNamePrefix='select'
               isClearable={true}
-              options={store?.task_group_employees}
+              options={selectedGroupEmp}
               theme={selectThemeColors}
               value={assignee}
               onChange={data => {

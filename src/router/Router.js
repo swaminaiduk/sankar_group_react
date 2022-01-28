@@ -206,7 +206,6 @@ const Router = () => {
           )}
         />
         {ResolveRoutes()}
-
         {/* NotFound Error page */}
         <Route path='*' component={Error} />
       </Switch>
