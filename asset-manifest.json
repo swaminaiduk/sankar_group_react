@@ -47,10 +47,10 @@
     "static/js/18.fe0aa8b9.chunk.js": "/static/js/18.fe0aa8b9.chunk.js",
     "static/js/18.fe0aa8b9.chunk.js.map": "/static/js/18.fe0aa8b9.chunk.js.map",
     "main.css": "/static/css/main.1102576a.chunk.css",
-    "main.js": "/static/js/main.ca7cf272.chunk.js",
-    "main.js.map": "/static/js/main.ca7cf272.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.7baeeda4.js",
-    "runtime-main.js.map": "/static/js/runtime-main.7baeeda4.js.map",
+    "main.js": "/static/js/main.248f0d43.chunk.js",
+    "main.js.map": "/static/js/main.248f0d43.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f7b8c252.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f7b8c252.js.map",
     "static/css/21.2e911729.chunk.css": "/static/css/21.2e911729.chunk.css",
     "static/js/21.b61ce258.chunk.js": "/static/js/21.b61ce258.chunk.js",
     "static/js/21.b61ce258.chunk.js.map": "/static/js/21.b61ce258.chunk.js.map",
@@ -78,8 +78,8 @@
     "static/js/30.b07d4ee6.chunk.js": "/static/js/30.b07d4ee6.chunk.js",
     "static/js/30.b07d4ee6.chunk.js.map": "/static/js/30.b07d4ee6.chunk.js.map",
     "static/css/31.019eeae5.chunk.css": "/static/css/31.019eeae5.chunk.css",
-    "static/js/31.a1acdf28.chunk.js": "/static/js/31.a1acdf28.chunk.js",
-    "static/js/31.a1acdf28.chunk.js.map": "/static/js/31.a1acdf28.chunk.js.map",
+    "static/js/31.942c5a07.chunk.js": "/static/js/31.942c5a07.chunk.js",
+    "static/js/31.942c5a07.chunk.js.map": "/static/js/31.942c5a07.chunk.js.map",
     "static/css/32.dc17da6f.chunk.css": "/static/css/32.dc17da6f.chunk.css",
     "static/js/32.debd0bb0.chunk.js": "/static/js/32.debd0bb0.chunk.js",
     "static/js/32.debd0bb0.chunk.js.map": "/static/js/32.debd0bb0.chunk.js.map",
@@ -537,7 +537,6 @@
     "static/media/content-img-3.jpg": "/static/media/content-img-3.48204896.jpg",
     "static/media/content-img-4.jpg": "/static/media/content-img-4.4d172274.jpg",
     "static/media/demand.svg": "/static/media/demand.70f9d066.svg",
-    "static/media/dplogo.png": "/static/media/dplogo.6b4387e4.png",
     "static/media/email.svg": "/static/media/email.03e998e9.svg",
     "static/media/error-dark.svg": "/static/media/error-dark.df76e8d8.svg",
     "static/media/error.svg": "/static/media/error.41b12111.svg",
@@ -567,7 +566,7 @@
     "static/media/login-v2.svg": "/static/media/login-v2.da80012f.svg",
     "static/media/login.png": "/static/media/login.e97b9f18.png",
     "static/media/login1.png": "/static/media/login1.42fa1b27.png",
-    "static/media/logo.496e3d71.png": "/static/media/logo.496e3d71.png",
+    "static/media/logo.73fd21f9.png": "/static/media/logo.73fd21f9.png",
     "static/media/logout.PNG": "/static/media/logout.d9d7d940.PNG",
     "static/media/macbook-pro.4ecc26e8.png": "/static/media/macbook-pro.4ecc26e8.png",
     "static/media/magic-mouse.f8ccce24.png": "/static/media/magic-mouse.f8ccce24.png",
@@ -618,10 +617,10 @@
     "static/media/vuexy-login-bg.jpg": "/static/media/vuexy-login-bg.640b7b14.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7baeeda4.js",
+    "static/js/runtime-main.f7b8c252.js",
     "static/css/21.2e911729.chunk.css",
     "static/js/21.b61ce258.chunk.js",
     "static/css/main.1102576a.chunk.css",
-    "static/js/main.ca7cf272.chunk.js"
+    "static/js/main.248f0d43.chunk.js"
   ]
 }
